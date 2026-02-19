@@ -10,8 +10,8 @@ services:
     privileged: true
     tty: true
     volumes:
-      - ./share:/home/ubuntu/share
-    working_dir: /home/ubuntu/share
+      - ./source:/home/ubuntu/source
+    working_dir: /home/ubuntu/source
     networks:
       chat_net:
         ipv4_address: 10.100.0.10
@@ -26,8 +26,8 @@ services:
     privileged: true
     tty: true
     volumes:
-      - ./share:/home/ubuntu/share
-    working_dir: /home/ubuntu/share
+      - ./source:/home/ubuntu/source
+    working_dir: /home/ubuntu/source
     networks:
       chat_net:
         ipv4_address: 10.100.0.20

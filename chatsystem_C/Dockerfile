@@ -19,4 +19,4 @@ RUN groupadd -g $GID ubuntu && \
     adduser ubuntu sudo && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER ubuntu
-WORKDIR /home/ubuntu/share
+WORKDIR /home/ubuntu/source

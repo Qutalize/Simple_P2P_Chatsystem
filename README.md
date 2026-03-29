@@ -109,7 +109,7 @@ GoのWebUI版では以下のような機能などを実装した。
 
 ### 動作デモ
 以下は、実際にWeb上で動かした様子です
-<video src="images/demo.mp4" controls width="100%"></video>
+<video src="video/chatsystem_Go_WebUI.mp4" controls width="100%"></video>
 
 ## 7. 結論
 ソケットプログラミングの基礎を学び、実際にC言語で実装することでパケット構造やI/O多重化の低レイヤーな挙動について学びを深めることができました。更に、Go言語を用いて効率的に抽象化を行うことで、低レイヤーのUDP通信とモダンなWebフロントエンド（WebSocket）をシームレスに結合するフルスタックな開発手法を体験できました。

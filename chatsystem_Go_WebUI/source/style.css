@@ -1,8 +1,7 @@
-/* style.css */
 body {
     margin: 0;
     font-family: sans-serif;
-    background-color: #7494C0; /* LINE風の背景色 */
+    background-color: #7494C0;
 }
 
 .chat-container {
@@ -14,7 +13,21 @@ body {
     background-color: #7494C0;
 }
 
-.chat-header, .input-area {
+.chat-header {
+    background-color: #00B900;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-header #targetId {
+    color: #fff;
+    margin: 0;
+    text-align: center;
+}
+
+.input-area {
     background-color: #fff;
     padding: 10px;
     display: flex;
@@ -29,7 +42,6 @@ body {
     gap: 15px;
 }
 
-/* 吹き出しの共通スタイル */
 .message-wrapper {
     display: flex;
     width: 100%;
@@ -44,25 +56,22 @@ body {
     word-wrap: break-word;
 }
 
-/* 自分のメッセージ（右寄せ・緑） */
 .message-wrapper.mine {
-    justify-content: flex-end; /* 右に寄せる */
+    justify-content: flex-end; /*自分のメッセージは緑で右に寄せる*/
 }
 .message-wrapper.mine .message-bubble {
-    background-color: #8DE055; /* LINEの緑色 */
+    background-color: #8DE055;
     color: #000;
 }
 
-/* 相手のメッセージ（左寄せ・白） */
 .message-wrapper.other {
-    justify-content: flex-start; /* 左に寄せる */
+    justify-content: flex-start; /* 相手のメッセージは白で左に寄せる */
 }
 .message-wrapper.other .message-bubble {
     background-color: #FFFFFF;
     color: #000;
 }
 
-/* 入力欄のスタイル */
 #messageInput {
     flex: 1;
     padding: 10px;
@@ -79,7 +88,6 @@ body {
     border-radius: 20px;
     cursor: pointer;
 }
-/* --- ここからスタンプパレット用の追加スタイル --- */
 
 #stampToggleBtn {
     background: none;
@@ -92,28 +100,27 @@ body {
 }
 
 #stampToggleBtn:hover {
-    transform: scale(1.1); /* ホバーで少し大きく */
+    transform: scale(1.1);
 }
 
 .stamp-palette {
     position: absolute;
-    bottom: 70px; /* 入力欄のすぐ上に配置 */
+    bottom: 70px;
     left: 10px;
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     padding: 10px;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     display: flex;
-    gap: 10px; /* スタンプ間の隙間 */
+    gap: 10px;
     transition: opacity 0.3s, transform 0.3s;
     z-index: 100;
 }
 
-/* hiddenクラスがついている時は見えなくする */
 .stamp-palette.hidden {
     opacity: 0;
     pointer-events: none;
-    transform: translateY(10px); /* 少し下にずらして隠す */
+    transform: translateY(10px);
 }
 
 .stamp-palette img {
@@ -125,20 +132,20 @@ body {
 }
 
 .stamp-palette img:hover {
-    background-color: #f0f0f0; /* ホバーで背景色をつける */
+    background-color: #f0f0f0;
 }
+
 .stamp-bubble {
-    /* 背景の白や緑を消し、影なども消す */
     background: transparent !important; 
     padding: 0; 
 }
 
 .stamp-bubble img {
-    max-width: 120px;  /* 横幅の最大サイズ（LINEのスタンプくらいの大きさ） */
-    max-height: 120px; /* 縦長すぎる画像が来てもここでストップさせる */
+    max-width: 120px;
+    max-height: 120px;
     width: auto;
     height: auto;
-    object-fit: contain; /* 画像の縦横比（アスペクト比）を崩さずに枠内に収める */
-    border-radius: 10px; /* 画像の角を少しだけ丸くすると自然になります */
-    display: block;      /* 画像の下にできる謎の隙間を消す */
+    object-fit: contain; /*画像のアスペクト比を保って枠内に収める*/
+    border-radius: 10px;
+    display: block;/*画像の下にできる隙間を消す*/
 }

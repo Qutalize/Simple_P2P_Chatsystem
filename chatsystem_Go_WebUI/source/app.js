@@ -6,9 +6,10 @@ const targetId = document.getElementById('targetId');
 const stampToggleBtn = document.getElementById('stampToggleBtn');
 const stampPalette = document.getElementById('stampPalette');
 const stampMap = {
-    'happy': 'stamp/happy.png',
-    'ok': 'stamp/OK.png',  
-    'sad': 'stamp/sad.png' 
+    'happy': 'stamps/happy.png',
+    'ok': 'stamps/OK.png',  
+    'sad': 'stamps/sad.png' ,
+    'HBD': 'stamps/HBD.png'
 };
 
 function initStampPalette() {
@@ -16,18 +17,15 @@ function initStampPalette() {
         const img = document.createElement('img');
         img.src = url;
         img.alt = id;
-        
-        // スタンプ画像がクリックされた時の処理
         img.onclick = function() {
-            sendStamp(id); // スタンプを送信
-            stampPalette.classList.add('hidden'); // 送信後はパレットを閉じる
+            sendStamp(id);
+            stampPalette.classList.add('hidden');
         };
         stampPalette.appendChild(img);
     }
 }
 initStampPalette();
 
-// スタンプボタンを押した時のパレット開閉処理
 stampToggleBtn.onclick = function() {
     stampPalette.classList.toggle('hidden');
 };
@@ -57,9 +55,6 @@ ws.onmessage = function(event) {
     }
 };
 
-// --- 送信処理の分割 ---
-
-// テキスト送信（ボタン or Enterキー）
 sendBtn.onclick = sendTextMessage;
 input.onkeypress = function(event) {
     if (event.key === 'Enter') {
@@ -69,20 +64,15 @@ input.onkeypress = function(event) {
 function sendTextMessage() {
     const text = input.value.trim();
     if (text === '') return;
-    
-    // 【復活・改良】先頭が「@」で始まり、その後ろの文字がスタンプIDとして存在するか確認
     if (text.startsWith('@')) {
-        const stampId = text.substring(1); // 先頭の "@" を切り取る（例: "@sad" -> "sad"）
-        
-        // stampMapにそのIDが存在すれば、スタンプとして送信
+        const stampId = text.substring(1);
         if (stampMap[stampId]) {
-            sendStamp(stampId); // すでに作ったスタンプ送信用の関数を使い回す
+            sendStamp(stampId);
             input.value = '';
-            return; // テキスト送信処理はここでストップ
+            return;
         }
     }
 
-    // スタンプコマンドではない（または存在しないスタンプだった）場合は通常のテキストとして送信
     console.log("[WS送信] テキストを送信します:", text);
     const messageToSend = { type: 'text', content: text };
     addMessage(text, 'mine', 'text');
@@ -90,7 +80,6 @@ function sendTextMessage() {
     input.value = '';
 }
 
-// スタンプ送信（パレットから画像をクリック）
 function sendStamp(stampId) {
     console.log("[WS送信] スタンプを送信します:", stampId);
     const messageToSend = { type: 'stamp', stampId: stampId };
@@ -98,7 +87,6 @@ function sendStamp(stampId) {
     ws.send(JSON.stringify(messageToSend)); 
 }
 
-// 画面への描画処理
 function addMessage(content, type, contentType) {
     const wrapper = document.createElement('div');
     wrapper.className = `message-wrapper ${type}`;

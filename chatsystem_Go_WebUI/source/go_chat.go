@@ -6,7 +6,6 @@ import (
 	"net"
 	"net/http"
 	"os"
-
 	"github.com/gorilla/websocket"
 )
 
@@ -41,7 +40,7 @@ func main() {
 	fmt.Printf("=== Go P2P Chat Started ===\n")
 	fmt.Printf("Target IP: %s\n", targetIP)
 
-	// UDP受信ループ
+	//UDP受信ループ
 	go func() {
 		buffer := make([]byte, 1024)
 		for {
@@ -50,7 +49,6 @@ func main() {
 				continue
 			}
 			msg := string(buffer[:n])
-			// 【ログ追加】関門2の突破確認
 			log.Printf("[UDP受信] %s から受信: %s\n", remoteAddr.IP, msg)
 
 			select {
@@ -71,9 +69,9 @@ func main() {
 			return
 		}
 		defer ws.Close()
-		log.Println("[WebSocket] ブラウザが接続しました！")
+		log.Println("[WebSocket] ブラウザが接続しました")
 
-		// Go -> ブラウザ
+		//Go -> ブラウザ
 		go func() {
 			for msg := range uiChan {
 				err := ws.WriteMessage(websocket.TextMessage, []byte(msg))
@@ -81,18 +79,16 @@ func main() {
 					log.Println("[WebSocket切断] ブラウザへの送信停止")
 					break
 				}
-				// 【ログ追加】関門3の突破確認
 				log.Println("[WS送信] ブラウザへ表示指示を出しました")
 			}
 		}()
 
-		// ブラウザ -> Go -> UDP
+		//ブラウザ -> Go -> UDP
 		for {
 			_, message, err := ws.ReadMessage()
 			if err != nil {
 				break
 			}
-			// 【ログ追加】関門1の突破確認
 			log.Printf("[WS受信] ブラウザから入力あり: %s\n", string(message))
 
 			_, err = conn.WriteToUDP(message, targetAddr)

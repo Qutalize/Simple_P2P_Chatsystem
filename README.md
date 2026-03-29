@@ -109,7 +109,8 @@ GoのWebUI版では以下のような機能などを実装した。
 
 ### 動作デモ
 以下は、実際にWeb上で動かした様子です
-<video src="https://github.com/Qutalize/Simple_P2P_chatsystem_C_Go/raw/main/chatsystem_Go_WebUI/video/chatsystem_Go_WebUI.mp4" controls width="100%"></video>
+https://github.com/user-attachments/assets/cd7f14ff-90b5-4c49-91f8-6d4f5c61d3a2
+
 
 ## 7. 結論
 ソケットプログラミングの基礎を学び、実際にC言語で実装することでパケット構造やI/O多重化の低レイヤーな挙動について学びを深めることができました。更に、Go言語を用いて効率的に抽象化を行うことで、低レイヤーのUDP通信とモダンなWebフロントエンド（WebSocket）をシームレスに結合するフルスタックな開発手法を体験できました。
